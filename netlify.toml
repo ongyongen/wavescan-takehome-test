@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
+
+[build]
+base = "/frontend"
+publish = "/build"
+command = "npm run build"
