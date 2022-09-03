@@ -1,0 +1,9 @@
+.header {
+    width: 100vw;
+    height: 5vh;
+}
+
+#header-logo {
+    height: 100%;
+    padding: 1em;
+}

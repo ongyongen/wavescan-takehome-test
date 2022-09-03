@@ -1,19 +1,20 @@
 
-function App() {
+import Home from "./components/LandingPage/Home"
+import Error from "./components/ErrorPage/Error"
+import Photo from './components/PhotoPage/Photo';
+import { Routes, Route } from "react-router-dom"
+import './App.css'
+function App() {  
   return (
     <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+      <Route path="/" element={ <Home/> } />
+      <Route path="/error" element={ <Error/> } />
+      <Route path="/photo" element={ <Photo/> } />
+      </Routes>
+      </div>
   );
 }
 
 export default App;
+

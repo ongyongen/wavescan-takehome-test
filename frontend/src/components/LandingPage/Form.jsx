@@ -1,0 +1,69 @@
+import React from 'react'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from "react-router-dom"
+import './Home.css'
+
+const Form = ()  => {
+    const navigate = useNavigate()
+
+    const scanningOptions = ["Gantry", "Crawler", "Auto", "Manual", "Arm"]
+
+    const [name, setName] = useState("")
+    const [scanningMode, setScanningMode] = useState(scanningOptions[0])
+    const [xDimension, setXDimension] = useState(0)
+    const [yDimension, setYDimension] = useState(0)
+    const [scannerFrequency, setScannerFrequency] = useState(0)
+
+    const updateInputName = (e) => setName(e.target.value)
+    const updateScanningMode = (e) => setScanningMode(e.target.value)
+    const updateInputXDimension = (e) => setXDimension(e.target.value)
+    const updateInputYDimension = (e) => setYDimension(e.target.value)
+    const updateInputScannerFrequency = (e) => setScannerFrequency(e.target.value)
+
+    const SubmitForm = async (e) => {
+        e.preventDefault()
+        try {
+            await axios.post('https://wavescan-backend.herokuapp.com/new', 
+            {
+                "project_name": name,
+                "scanning_mode": scanningMode,
+                "scan_dimensions_x": xDimension,
+                "scan_dimensions_y": yDimension,
+                "scanner_frequency": scannerFrequency
+            })
+            .then(res => {
+                if (res.status == 200) {
+                    navigate('/photo')
+                } 
+            })
+        } catch (err) {
+            navigate('/Error',{ state: err.response.data.error })
+        }
+    }
+    console.log(yDimension > 1)
+    return (
+        <div id="landing-page">
+          <form id="input-container">
+            <label class="input-description">Project name</label>
+            <input class="input-box" onChange={updateInputName}></input>
+            <label class="input-description">Scanning mode</label>
+            <select class="input-box" id="scanning-options" onChange={updateScanningMode}>
+                {scanningOptions.map((option) => <option>{option}</option>)}
+            </select>
+            <label class="input-description">Scan dimensions (cm)</label>
+            <div id="dimensions-container">
+              <label class="input-description" id="x-dimension-input">x</label>
+              <input class="input-box" id="x-dimension-input-box" onChange={updateInputXDimension}></input>
+              <label class="input-description" id="y-dimension-input">y</label>
+              <input class="input-box" id="y-dimension-input-box" onChange={updateInputYDimension}></input>
+            </div>
+            <label class="input-description">Scanner Frequency (GHz)</label>
+            <input class="input-box" onChange={updateInputScannerFrequency}></input>
+            <button id="submit-form-button" onClick={SubmitForm}>SCAN</button>
+          </form>
+        </div>
+    )
+}
+
+export default Form
