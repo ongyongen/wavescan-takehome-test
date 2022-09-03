@@ -32,7 +32,7 @@ async def main():
 
 @app.get("/image")
 async def get_image():
-    return {"image": "Image"}
+    return {"image": "https://d2plt0bjayjk67.cloudfront.net/ScannedImage.png"}
 
 class UserInputForm(BaseModel):
     project_name: str 
