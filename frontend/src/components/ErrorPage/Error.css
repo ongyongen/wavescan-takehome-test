@@ -1,0 +1,21 @@
+#error-container {
+    margin-left: 2em;
+    margin-top: 5em;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 0.5em;
+    background-color: rgb(128, 90, 128);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: rgb(221, 177, 218);
+}
+
+.error-description {
+    margin-bottom: 2em;
+}

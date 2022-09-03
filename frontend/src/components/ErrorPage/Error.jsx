@@ -1,13 +1,19 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import Header from '../Header/Header';
+import './Error.css'
 
-
-function Error() {
+const Error = () => {
     const { state } = useLocation();
-    console.log(state)
     return (
         <div>
-            <h1>This is the error page</h1>
+            <Header />
+            <div id="error-container">
+            <h1 id="error-title">Error!</h1>
+            <p className="error-description">Your form has not been submitted due to some errors. Please correct these errors below and submit your form again:</p>
+            {state.map((error) => <p className="error-description">{error}</p>)}
+            <NavLink to='/' className="nav-link">Back</NavLink>
+            </div>
         </div>
     )
 }
