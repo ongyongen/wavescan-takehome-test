@@ -11,8 +11,6 @@ from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 
 
-
-
 app = FastAPI()
 
 origins = [
@@ -42,7 +40,6 @@ class UserInputForm(BaseModel):
     scan_dimensions_x: int
     scan_dimensions_y: int
     scanner_frequency: float
-
 
 @app.post("/new")
 async def create_item(item: UserInputForm,response: Response):
