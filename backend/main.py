@@ -1,22 +1,15 @@
-from distutils.log import error
 import uvicorn
 from pydantic import BaseModel
-from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from fastapi import FastAPI,HTTPException, Response, status,Request
-from fastapi.responses import PlainTextResponse
+from fastapi import FastAPI, Response, status
 
 import uvicorn
-from pydantic import BaseModel, Field
-from typing import Union
+from pydantic import BaseModel
 
 from fastapi.responses import JSONResponse
-from fastapi.encoders import jsonable_encoder
 
-from fastapi.responses import RedirectResponse
-from starlette.exceptions import HTTPException as StarletteHTTPException
 
 
 
