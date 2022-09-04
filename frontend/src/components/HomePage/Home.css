@@ -5,12 +5,13 @@
     align-items: center;
     justify-content: center;
 }
+
 #input-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 20%;
-    background-color: rgba(201, 201, 201, 0.3);
+    margin-top:5%;
+    background-color: rgba(255, 255, 255, 0.138);
     padding: 2em;
     border-radius: 10px;
     font-size: 1em;
@@ -32,8 +33,6 @@
     width: 10vw;
 }
 
-
-
 #y-dimension-input {
     margin-left: 0.5em;
 }
@@ -43,16 +42,15 @@
 }
 
 #submit-form-button {
-    width: 10vw;
     padding: 1em;
     border-radius: 10px;
-    background: linear-gradient(to bottom right, rgb(29, 29, 150), rgb(80, 52, 189));
     border-width: 0px;
     color: white;
+    background-color: rgb(17, 132, 40);
     font-weight: bold;
     cursor: pointer;
 }
 
 #submit-form-button:hover {
-    background: linear-gradient(to bottom right, rgb(90, 90, 219), rgb(91, 60, 218));
+    background-color: rgb(72, 145, 72);
 }

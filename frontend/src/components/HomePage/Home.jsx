@@ -1,15 +1,11 @@
 import React from 'react'
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from "react-router-dom"
-
 import Header from '../Header/Header';
 import Form from './Form.jsx'
 import './Home.css'
 
 const Home = ()  => {
     return (
-        <div id="landing-page">
+        <div>
           <Header />
           <Form />
         </div>

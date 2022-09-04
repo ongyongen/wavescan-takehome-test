@@ -1,11 +1,15 @@
-#error-container {
-    margin-left: 2em;
+#error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5em;
     margin-top: 5em;
 }
 
 .nav-link {
     text-decoration: none;
     color: white;
+    max-width: 40px;
     padding: 0.5em;
     background-color: rgb(128, 90, 128);
     border-radius: 10px;

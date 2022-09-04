@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 import './Home.css'
 
 const Form = ()  => {
@@ -24,7 +24,7 @@ const Form = ()  => {
     const SubmitForm = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('https://wavescan-backend.herokuapp.com/new', 
+            await axios.post('http://localhost:8000/new', 
             {
                 "project_name": name,
                 "scanning_mode": scanningMode,
@@ -32,16 +32,17 @@ const Form = ()  => {
                 "scan_dimensions_y": yDimension,
                 "scanner_frequency": scannerFrequency
             })
-            .then(res => {
-                if (res.status == 200) {
-                    navigate('/photo')
-                } 
-            })
+            .then(res => {navigate('/photo')})
         } catch (err) {
-            navigate('/Error',{ state: err.response.data.error })
+            if (err.response.status == 422) {
+                var errors = []
+                errors.push("Please ensure you key in only numbers for scan dimensions and scan frequency fields")
+                navigate('/Error',{ state: errors})
+            } else {
+                navigate('/Error',{ state: err.response.data.error})
+            }
         }
     }
-    console.log(yDimension > 1)
     return (
         <div id="landing-page">
           <form id="input-container">

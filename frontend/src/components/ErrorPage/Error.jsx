@@ -5,14 +5,15 @@ import './Error.css'
 
 const Error = () => {
     const { state } = useLocation();
+    console.log(state)
     return (
         <div>
             <Header />
-            <div id="error-container">
-            <h1 id="error-title">Error!</h1>
-            <p className="error-description">Your form has not been submitted due to some errors. Please correct these errors below and submit your form again:</p>
-            {state.map((error) => <p className="error-description">{error}</p>)}
-            <NavLink to='/' className="nav-link">Back</NavLink>
+            <div id="error-page">
+                <h1 id="error-title">Error!</h1>
+                <p className="error-description">Your form has not been submitted due to some errors. Please correct these errors below and submit your form again:</p>
+                {state != null && state.map((error) => <p className="error-description">{error}</p>)}
+                <NavLink to='/' className="nav-link">Back</NavLink>
             </div>
         </div>
     )

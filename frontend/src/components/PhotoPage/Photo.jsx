@@ -14,7 +14,7 @@ function Photo() {
     }, [])
 
   const fetchData = async () => {
-    await axios.get("https://wavescan-backend.herokuapp.com/image")
+    await axios.get("http://localhost:8000/image")
         .then((res) => {
             console.log(res.data.image);
             setImage(() => res.data.image)

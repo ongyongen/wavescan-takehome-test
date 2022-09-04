@@ -1,15 +1,9 @@
-import uvicorn
-from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from fastapi import FastAPI, Response, status
-
-import uvicorn
-from pydantic import BaseModel
-
+from fastapi import FastAPI, Response
 from fastapi.responses import JSONResponse
-
+from helpers import check_input
+from model import UserInputForm
 
 app = FastAPI()
 
@@ -26,36 +20,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def main():
-    return {"message": "Hello World"}
-
 @app.get("/image")
 async def get_image():
     return {"image": "https://d2plt0bjayjk67.cloudfront.net/ScannedImage.png"}
 
-class UserInputForm(BaseModel):
-    project_name: str 
-    scanning_mode: str
-    scan_dimensions_x: int
-    scan_dimensions_y: int
-    scanner_frequency: float
-
 @app.post("/new")
 async def create_item(item: UserInputForm,response: Response):
-    errors = []
-    if len(item.project_name) <= 3:
-        errors += ["Project name has to be more than 3 characters"]
-    if item.scan_dimensions_x < 1 or item.scan_dimensions_y < 1:
-        errors += ["Item dimensions have to be more than 1 cm"]
-    if item.scanner_frequency < 1:
-        errors += ["Scanner frequency has to be more than 1 GHz"]
-    if len(errors) != 0:
-        return JSONResponse(status_code=400, content={"error": errors})
-    
-    else:
-        response.status_code = status.HTTP_200_OK
+    errors = check_input(item)
+    if len(errors) == 0:
         return {"body": item}
-    
-if __name__=="__main__":
-    uvicorn.run("app.app:app", port=8000, reload=True)
+    else:
+        return JSONResponse(status_code=400, content={"error": errors})
