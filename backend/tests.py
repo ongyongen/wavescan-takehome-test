@@ -2,12 +2,14 @@ from fastapi.testclient import TestClient
 from main import app
 
 client = TestClient(app)
-
+ 
+# Image can be retrieved at /image route
 def test_get_image():
     response = client.get("/image")
     assert response.status_code == 200
     assert response.json() ==  {"image": "https://d2plt0bjayjk67.cloudfront.net/ScannedImage.png"}
 
+# Form can be sent successfully with inputs accepted based on specifications
 def test_create_item_input_correct():
     response = client.post(
         "/new",
@@ -20,15 +22,16 @@ def test_create_item_input_correct():
         }
     )
     assert response.status_code == 200
-    assert response.json() == {'body': {
-            'project_name': 'aaaa',
-            'scan_dimensions_x': 10,
-            'scan_dimensions_y': 10,
-            'scanner_frequency': 10.0,
-            'scanning_mode': 'Gantry'
+    assert response.json() == {"body": {
+            "project_name": "aaaa",
+            "scan_dimensions_x": 10,
+            "scan_dimensions_y": 10,
+            "scanner_frequency": 10.0,
+            "scanning_mode": "Gantry"
         },
     }
 
+# Raise errors if input values are unaccepted based on specifications
 def test_create_item_input_value_error():
     response = client.post(
         "/new",
@@ -41,13 +44,14 @@ def test_create_item_input_value_error():
         }
     )
     assert response.status_code == 400
-    assert response.json() == {'error': [ 
-        'Project name has to be more than 3 characters',
-        'Item dimensions have to be more than 1 cm',
-        'Scanner frequency has to be more than 1 GHz'
+    assert response.json() == {"error": [ 
+        "Project name has to be more than 3 characters",
+        "Item dimensions have to be more than 1 cm",
+        "Scanner frequency has to be more than 1 GHz"
         ]
     }
 
+# Raise errors if input data types are unaccepted based on specifications
 def test_create_item_dimensions_input_type_error():
     response = client.post(
         "/new",
@@ -60,5 +64,5 @@ def test_create_item_dimensions_input_type_error():
         }
     )
     assert response.status_code == 400
-    assert response.json() == {'error': ['Please ensure you key in only numbers for scan dimensions and scan frequency fields']}
+    assert response.json() == {"error": ["Please ensure you key in only numbers for scan dimensions and scan frequency fields"]}
        

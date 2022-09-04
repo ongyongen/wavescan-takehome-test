@@ -1,10 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, Response
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from helpers import check_input
 from model import UserInputForm
-from fastapi.exceptions import RequestValidationError
 
 app = FastAPI()
 
@@ -21,10 +20,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/image")
-async def get_image():
-    return {"image": "https://d2plt0bjayjk67.cloudfront.net/ScannedImage.png"}
+# GET : welcome message
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
 
+# POST : send user input form  
 @app.post("/new")
 async def create_item(item: UserInputForm,response: Response):
     errors = check_input(item)
@@ -33,6 +34,12 @@ async def create_item(item: UserInputForm,response: Response):
     else:
         return JSONResponse(status_code=400, content={"error": errors})
 
+# GET : obtain link of scanned image 
+@app.get("/image")
+async def get_image():
+    return {"image": "https://d2plt0bjayjk67.cloudfront.net/ScannedImage.png"}
+
+# Override default RequestValidationError when users key in input of an unaccepted data type 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
     return JSONResponse(status_code=400, content={"error": ["Please ensure you key in only numbers for scan dimensions and scan frequency fields"]})

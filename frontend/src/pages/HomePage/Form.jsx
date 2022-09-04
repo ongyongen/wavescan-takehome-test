@@ -1,8 +1,8 @@
-import React from 'react'
-import axios from 'axios';
-import { useState } from 'react';
+import React from "react"
+import axios from "axios"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import './Home.css'
+import "./Home.css"
 
 const Form = ()  => {
     const navigate = useNavigate()
@@ -21,20 +21,21 @@ const Form = ()  => {
     const updateInputYDimension = (e) => setYDimension(e.target.value)
     const updateInputScannerFrequency = (e) => setScannerFrequency(e.target.value)
 
-    const SubmitForm = async (e) => {
+    // Submit form when user clicks on submit button 
+    const submitForm = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('https://wavescan-backend.herokuapp.com/new', 
+            await axios.post("https://wavescan-backend.herokuapp.com/new", 
             {
                 "project_name": name,
                 "scanning_mode": scanningMode,
                 "scan_dimensions_x": xDimension,
                 "scan_dimensions_y": yDimension,
-                "scanner_frequency": scannerFrequency
+                "scanner_frequency": scannerFrequency.toFixed(1)
             })
             .then(res => {navigate('/photo')})
         } catch (err) {
-            navigate('/error', { state: err.response.data.error})
+            navigate("/error", { state: err.response.data.error})
         }
     }
     return (
@@ -55,7 +56,7 @@ const Form = ()  => {
             </div>
             <label class="input-description">Scanner Frequency (GHz)</label>
             <input class="input-box" onChange={updateInputScannerFrequency}></input>
-            <button id="submit-form-button" onClick={SubmitForm}>SCAN</button>
+            <button id="submit-form-button" onClick={submitForm}>SCAN</button>
           </form>
         </div>
     )

@@ -1,28 +1,28 @@
-import React from 'react'
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, NavLink } from "react-router-dom"
-import './Photo.css'
-import Header from '../Header/Header';
+import React from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { NavLink } from "react-router-dom"
+import "./Photo.css"
+import Header from "../../components/Header/Header"
 
-function Photo() {
-
+const Photo = () => {
     const [image, setImage] = useState("")
 
     useEffect(() => {
         fetchData()
     }, [])
-
-  const fetchData = async () => {
+    
+    // Get link of image 
+    const fetchData = async () => {
     await axios.get("https://wavescan-backend.herokuapp.com/image")
         .then((res) => {
-            console.log(res.data.image);
+            console.log(res.data.image)
             setImage(() => res.data.image)
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err)
         })
-      };
+    };
     return (
         <div>
             <Header/>

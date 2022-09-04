@@ -1,19 +1,19 @@
 /// <reference types="cypress" />
 
-describe('wavescan-e2e-tests', () => {
+describe("wavescan-e2e-tests", () => {
   beforeEach(() => {
-    cy.visit('https://wavescan-frontend.netlify.app')
+    cy.visit("https://wavescan-frontend.netlify.app")
   })
-
-  it('displays user input form by default', () => {
-    cy.get("img").should("have.attr", "src").should('include','wavescan-logo')
-    cy.get(".input-description").eq(0).should('have.text', "Project name")
-    cy.get(".input-description").eq(1).should('have.text', "Scanning mode")
-    cy.get(".input-description").eq(2).should('have.text', "Scan dimensions (cm)")
-    cy.get(".input-description").eq(3).should('have.text', "x")
-    cy.get(".input-description").eq(4).should('have.text', "y")
-    cy.get(".input-description").eq(5).should('have.text', "Scanner Frequency (GHz)")
-    cy.get("button").should('have.text', "SCAN")
+  
+  it("displays user input form by default", () => {
+    cy.get("img").should("have.attr", "src").should("include","wavescan-logo")
+    cy.get(".input-description").eq(0).should("have.text", "Project name")
+    cy.get(".input-description").eq(1).should("have.text", "Scanning mode")
+    cy.get(".input-description").eq(2).should("have.text", "Scan dimensions (cm)")
+    cy.get(".input-description").eq(3).should("have.text", "x")
+    cy.get(".input-description").eq(4).should("have.text", "y")
+    cy.get(".input-description").eq(5).should("have.text", "Scanner Frequency (GHz)")
+    cy.get("button").should("have.text", "SCAN")
   })
 
   it("Handles correct user form submission", () => {

@@ -1,9 +1,9 @@
 
-import Home from "./components/HomePage/Home"
-import Error from "./components/ErrorPage/Error"
-import Photo from './components/PhotoPage/Photo';
+import Home from "./pages/HomePage/Home"
+import Error from "./pages/ErrorPage/Error"
+import Photo from './pages/PhotoPage/Photo'
 import { Routes, Route } from "react-router-dom"
-import './App.css'
+import "./App.css"
 
 const App = () => {  
   return (
@@ -17,5 +17,5 @@ const App = () => {
   );
 }
 
-export default App;
+export default App
 

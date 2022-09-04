@@ -1,7 +1,7 @@
-import React from 'react'
-import Header from '../Header/Header';
-import Form from './Form.jsx'
-import './Home.css'
+import React from "react"
+import Header from "../../components/Header/Header"
+import Form from "./Form.jsx"
+import "./Home.css"
 
 const Home = ()  => {
     return (

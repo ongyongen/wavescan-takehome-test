@@ -1,5 +1,6 @@
 from model import UserInputForm
 
+# Handle logic for processing input form
 def check_input(item: UserInputForm):
     errors = []
     if len(item.project_name) <= 3:

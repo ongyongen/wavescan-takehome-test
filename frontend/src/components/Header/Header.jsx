@@ -1,6 +1,6 @@
 import React from "react";
-import headerLogo from "../../img/wavescan-logo.png"
-import './Header.css'
+import headerLogo from "../../img/wavescan-logo.png";
+import "./Header.css";
 
 const Header = () => {
     return (
@@ -10,4 +10,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;
