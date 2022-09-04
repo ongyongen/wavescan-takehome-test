@@ -5,7 +5,6 @@ import './Error.css'
 
 const Error = () => {
     const { state } = useLocation();
-    console.log(state)
     return (
         <div>
             <Header />

@@ -14,7 +14,7 @@ function Photo() {
     }, [])
 
   const fetchData = async () => {
-    await axios.get("http://localhost:8000/image")
+    await axios.get("https://wavescan-backend.herokuapp.com/image")
         .then((res) => {
             console.log(res.data.image);
             setImage(() => res.data.image)
@@ -27,8 +27,8 @@ function Photo() {
         <div>
             <Header/>
             <div id="photo-page">
-                <h1>Scanned image</h1>
-                <img id="img" src={image}></img>
+                <h1 className="photo-page-title">Scanned image</h1>
+                <img id="img" alt="scanned photo" src={image}></img>
                 <NavLink to="/" className="nav-link">Back</NavLink>
             </div>
         </div>

@@ -24,7 +24,7 @@ const Form = ()  => {
     const SubmitForm = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('http://localhost:8000/new', 
+            await axios.post('https://wavescan-backend.herokuapp.com/new', 
             {
                 "project_name": name,
                 "scanning_mode": scanningMode,
@@ -34,20 +34,14 @@ const Form = ()  => {
             })
             .then(res => {navigate('/photo')})
         } catch (err) {
-            if (err.response.status == 422) {
-                var errors = []
-                errors.push("Please ensure you key in only numbers for scan dimensions and scan frequency fields")
-                navigate('/Error',{ state: errors})
-            } else {
-                navigate('/Error',{ state: err.response.data.error})
-            }
+            navigate('/error', { state: err.response.data.error})
         }
     }
     return (
         <div id="landing-page">
           <form id="input-container">
-            <label class="input-description">Project name</label>
-            <input class="input-box" onChange={updateInputName}></input>
+            <label class="input-description" id="project-name-label">Project name</label>
+            <input class="input-box" id="project-name" onChange={updateInputName}></input>
             <label class="input-description">Scanning mode</label>
             <select class="input-box" id="scanning-options" onChange={updateScanningMode}>
                 {scanningOptions.map((option) => <option>{option}</option>)}

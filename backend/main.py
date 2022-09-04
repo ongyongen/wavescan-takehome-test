@@ -4,6 +4,7 @@ from fastapi import FastAPI, Response
 from fastapi.responses import JSONResponse
 from helpers import check_input
 from model import UserInputForm
+from fastapi.exceptions import RequestValidationError
 
 app = FastAPI()
 
@@ -31,3 +32,7 @@ async def create_item(item: UserInputForm,response: Response):
         return {"body": item}
     else:
         return JSONResponse(status_code=400, content={"error": errors})
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    return JSONResponse(status_code=400, content={"error": ["Please ensure you key in only numbers for scan dimensions and scan frequency fields"]})
