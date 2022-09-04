@@ -12,10 +12,10 @@ Testing: FastAPI (Testclient), Cypress <br />
 Storage (for the image file) : Amazon S3, Amazon CloudFront <br />
 
 ## Packages installed ##
-Axios : npm install axios
-Cypress : npm install cypress --save-dev
-React Router DOM : npm i react-router-dom
-FastAPI : pip install fastapi 
+Axios : npm install axios <br />
+Cypress : npm install cypress --save-dev <br />
+React Router DOM : npm i react-router-dom <br />
+FastAPI : pip install fastapi <br />
 
 ## API endpoints ##
 | Description  | Endpoint | Method |
