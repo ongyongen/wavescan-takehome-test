@@ -42,4 +42,4 @@ async def get_image():
 # Override default RequestValidationError when users key in input of an unaccepted data type 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
-    return JSONResponse(status_code=400, content={"error": ["Please ensure you key in only numbers for scan dimensions and scan frequency fields"]})
+    return JSONResponse(status_code=400, content={"error": ["Please ensure you key in only numbers for scan dimensions and scanner frequency fields"]})
