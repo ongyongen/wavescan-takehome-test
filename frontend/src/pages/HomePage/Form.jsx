@@ -19,8 +19,14 @@ const Form = ()  => {
     const updateScanningMode = (e) => setScanningMode(e.target.value)
     const updateInputXDimension = (e) => setXDimension(e.target.value)
     const updateInputYDimension = (e) => setYDimension(e.target.value)
-    const updateInputScannerFrequency = (e) => setScannerFrequency(e.target.value)
-
+    const updateInputScannerFrequency = (e) => {
+        if (isNaN(e.target.value) == true) {
+            setScannerFrequency(e.target.value)
+        } else {
+            setScannerFrequency(parseFloat(e.target.value).toFixed(1))
+        }
+    }
+    
     // Submit form when user clicks on submit button 
     const submitForm = async (e) => {
         e.preventDefault()
@@ -31,7 +37,7 @@ const Form = ()  => {
                 "scanning_mode": scanningMode,
                 "scan_dimensions_x": xDimension,
                 "scan_dimensions_y": yDimension,
-                "scanner_frequency": scannerFrequency.toFixed(1)
+                "scanner_frequency":  scannerFrequency
             })
             .then(res => {navigate('/photo')})
         } catch (err) {
@@ -41,6 +47,7 @@ const Form = ()  => {
     return (
         <div id="landing-page">
           <form id="input-container">
+            <p>{scannerFrequency}</p>
             <label class="input-description" id="project-name-label">Project name</label>
             <input class="input-box" id="project-name" onChange={updateInputName}></input>
             <label class="input-description">Scanning mode</label>
