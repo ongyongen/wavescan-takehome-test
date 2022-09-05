@@ -48,20 +48,20 @@ const Form = ()  => {
         <div id="landing-page">
           <form id="input-container">
             <label class="input-description" id="project-name-label">Project name</label>
-            <input class="input-box" id="project-name" onChange={updateInputName}></input>
+            <input class="input-box" id="project-name" type="text" onChange={updateInputName}></input>
             <label class="input-description">Scanning mode</label>
-            <select class="input-box" id="scanning-options" onChange={updateScanningMode}>
+            <select class="input-box" id="scanning-options" name="scanning-options" onChange={updateScanningMode}>
                 {scanningOptions.map((option) => <option>{option}</option>)}
             </select>
             <label class="input-description">Scan dimensions (cm)</label>
             <div id="dimensions-container">
               <label class="input-description" id="x-dimension-input">x</label>
-              <input class="input-box" id="x-dimension-input-box" onChange={updateInputXDimension}></input>
+              <input class="input-box" id="x-dimension-input-box" type="text" onChange={updateInputXDimension}></input>
               <label class="input-description" id="y-dimension-input">y</label>
-              <input class="input-box" id="y-dimension-input-box" onChange={updateInputYDimension}></input>
+              <input class="input-box" id="y-dimension-input-box" type="text" onChange={updateInputYDimension}></input>
             </div>
             <label class="input-description">Scanner Frequency (GHz)</label>
-            <input class="input-box" onChange={updateInputScannerFrequency}></input>
+            <input class="input-box" type="text" onChange={updateInputScannerFrequency}></input>
             <button id="submit-form-button" onClick={submitForm}>SCAN</button>
           </form>
         </div>
