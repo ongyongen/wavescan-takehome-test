@@ -47,7 +47,6 @@ const Form = ()  => {
     return (
         <div id="landing-page">
           <form id="input-container">
-            <p>{scannerFrequency}</p>
             <label class="input-description" id="project-name-label">Project name</label>
             <input class="input-box" id="project-name" onChange={updateInputName}></input>
             <label class="input-description">Scanning mode</label>
